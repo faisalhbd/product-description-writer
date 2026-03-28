@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free AI Product Description Writer — SEO Optimized | Faisal Hossain</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="Generate compelling, SEO-optimized product descriptions instantly using AI. Free tool powered by Google Gemini. Perfect for eCommerce, Amazon, Shopify, and more.">
+<meta name="keywords" content="product description writer, AI product description, SEO product description, free product description generator, ecommerce copywriting, Gemini AI tool, product copy generator">
+<meta name="author" content="MD Faisal Hossain">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.faisalh.online/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.faisalh.online/">
+<meta property="og:title" content="Free AI Product Description Writer — SEO Optimized">
+<meta property="og:description" content="Generate compelling, SEO-optimized product descriptions instantly using AI. Free tool powered by Google Gemini.">
+<meta property="og:image" content="https://www.faisalh.online/og-image.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free AI Product Description Writer — SEO Optimized">
+<meta name="twitter:description" content="Generate compelling, SEO-optimized product descriptions instantly using AI. Free tool powered by Google Gemini.">
+<meta name="twitter:creator" content="@ifaisalh">
+
+<!-- Schema.org Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI Product Description Writer",
+  "description": "Generate compelling, SEO-optimized product descriptions instantly using AI. Free tool powered by Google Gemini.",
+  "url": "https://www.faisalh.online/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": {
+    "@type": "Person",
+    "name": "MD Faisal Hossain",
+    "url": "https://www.faisalh.online/",
+    "sameAs": [
+      "https://www.linkedin.com/in/ifaisalh/",
+      "https://github.com/faisalhbd"
+    ]
+  }
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #080810;
+  --surface: #0f0f1c;
+  --surface2: #141425;
+  --border: #1c1c35;
+  --border2: #252545;
+  --accent: #ff3c6e;
+  --accent-glow: rgba(255,60,110,0.25);
+  --green: #00e5a0;
+  --blue: #4d79ff;
+  --text: #e2e2f0;
+  --text2: #8888aa;
+  --text3: #4a4a6a;
+  --input-bg: #09091a;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Sora', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 15% 20%, rgba(77,121,255,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 85% 80%, rgba(255,60,110,0.06) 0%, transparent 70%);
+}
+
+.badge-row { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; justify-content: center; }
+.badge {
+  font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .1em;
+  padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border2); color: var(--text2);
+}
+.badge.live { border-color: var(--green); color: var(--green); }
+.badge.live::before { content: '● '; animation: pulse 1.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+header { text-align: center; margin-bottom: 36px; }
+h1 {
+  font-family: 'Bebas Neue', cursive; font-size: clamp(36px, 6vw, 60px); letter-spacing: 3px;
+  background: linear-gradient(135deg, #fff 30%, #8888cc 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;
+}
+.subtitle { font-size: 13px; color: var(--text2); margin-top: 8px; font-weight: 300; letter-spacing: .05em; }
+
+/* API BANNER */
+.api-banner {
+  width: 100%; max-width: 900px;
+  background: var(--surface2); border: 1px solid var(--border2);
+  border-radius: 8px; padding: 16px 20px; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  transition: box-shadow .3s;
+}
+.api-status-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--green); box-shadow: 0 0 8px var(--green); flex-shrink: 0; transition: all .3s;
+}
+.api-status-dot.warn { background: #ffaa00; box-shadow: 0 0 8px rgba(255,170,0,.5); }
+.api-status-dot.err { background: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
+.api-status-text { font-size: 13px; color: var(--text2); flex: 1; min-width: 180px; }
+.api-status-text strong { color: var(--text); }
+
+.api-key-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.api-key-row input {
+  background: var(--input-bg); border: 1px solid var(--border2); color: var(--text);
+  font-family: 'Space Mono', monospace; font-size: 12px; padding: 8px 14px;
+  border-radius: 6px; outline: none; width: 240px; transition: border-color .2s;
+}
+.api-key-row input:focus { border-color: var(--blue); }
+.api-key-row input::placeholder { color: var(--text3); }
+
+.btn-sm {
+  font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .05em;
+  padding: 8px 14px; border-radius: 6px; border: 1px solid; cursor: pointer; transition: all .2s; white-space: nowrap;
+}
+.btn-save { border-color: var(--blue); color: var(--blue); background: transparent; }
+.btn-save:hover { background: rgba(77,121,255,.15); }
+.btn-clear { border-color: var(--border2); color: var(--text3); background: transparent; }
+.btn-clear:hover { border-color: var(--accent); color: var(--accent); }
+
+/* GRID */
+.main-grid { width: 100%; max-width: 900px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 28px 26px; }
+
+.card-label {
+  font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .12em;
+  color: var(--text3); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+}
+.card-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.field { margin-bottom: 16px; }
+label { display: block; font-size: 11px; font-weight: 600; letter-spacing: .08em; color: var(--text2); margin-bottom: 7px; text-transform: uppercase; }
+label .req { color: var(--accent); margin-left: 2px; }
+
+input[type=text], select {
+  width: 100%; background: var(--input-bg); border: 1px solid var(--border2);
+  color: var(--text); font-family: 'Sora', sans-serif; font-size: 13.5px;
+  padding: 11px 14px; border-radius: 7px; outline: none; transition: border-color .2s, box-shadow .2s; appearance: none;
+}
+input[type=text]:focus, select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(77,121,255,.12); }
+input::placeholder { color: var(--text3); font-size: 13px; }
+select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%234a4a6a' d='M5 7L0 2h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+}
+select option { background: #0f0f1c; }
+
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.gen-btn {
+  width: 100%; margin-top: 10px; padding: 15px;
+  background: var(--accent); color: white; border: none; border-radius: 8px;
+  font-family: 'Bebas Neue', cursive; font-size: 20px; letter-spacing: 2px;
+  cursor: pointer; transition: all .25s; display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.gen-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 32px var(--accent-glow); }
+.gen-btn:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
+.spinner {
+  width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.3);
+  border-top-color: white; border-radius: 50%; animation: spin .7s linear infinite; display: none;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* OUTPUT */
+.output-card { display: flex; flex-direction: column; min-height: 480px; }
+.out-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.out-actions { display: flex; gap: 8px; }
+.icon-btn {
+  font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .05em;
+  padding: 6px 12px; border-radius: 5px; border: 1px solid var(--border2);
+  color: var(--text2); background: transparent; cursor: pointer; transition: all .2s;
+}
+.icon-btn:hover { border-color: var(--green); color: var(--green); }
+
+.output-box {
+  flex: 1; background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 18px; overflow-y: auto; position: relative; min-height: 360px;
+}
+.empty-state { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
+.empty-icon { font-size: 36px; opacity: .15; margin-bottom: 12px; }
+.empty-state p { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text3); line-height: 1.6; }
+
+#outputText { font-size: 14px; line-height: 1.8; color: var(--text); white-space: pre-wrap; display: none; }
+.typing-cursor { display: inline-block; width: 2px; height: 1.1em; background: var(--green); vertical-align: text-bottom; animation: blink .7s step-end infinite; }
+@keyframes blink { 50%{opacity:0} }
+
+.error-box {
+  display: none; padding: 14px; border: 1px solid rgba(255,60,110,.3); border-radius: 6px;
+  background: rgba(255,60,110,.05); color: var(--accent); font-family: 'Space Mono', monospace;
+  font-size: 12px; line-height: 1.6;
+}
+
+.stats-row { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
+.stat { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--text3); }
+.stat span { color: var(--green); }
+
+/* HELP */
+.help-box {
+  width: 100%; max-width: 900px; margin-top: 20px;
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 16px 20px; font-size: 12px; color: var(--text2); line-height: 1.7;
+}
+.help-box strong { color: var(--green); font-family: 'Space Mono', monospace; }
+.help-box a { color: var(--blue); text-decoration: none; }
+.help-box a:hover { text-decoration: underline; }
+
+@media(max-width: 640px) {
+  .main-grid { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; }
+  .api-key-row input { width: 100%; }
+}
+
+/* FOOTER */
+.site-footer {
+  width: 100%; max-width: 900px; margin-top: 32px; padding: 24px 0 12px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+}
+.footer-left { display: flex; flex-direction: column; gap: 4px; }
+.footer-name {
+  font-family: 'Bebas Neue', cursive; font-size: 18px; letter-spacing: 2px;
+  background: linear-gradient(135deg, #fff, #8888cc);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.footer-tagline { font-size: 11px; color: var(--text3); font-family: 'Space Mono', monospace; }
+
+.footer-links { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.footer-link {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: .04em;
+  padding: 7px 14px; border-radius: 20px;
+  border: 1px solid var(--border2); color: var(--text2);
+  text-decoration: none; transition: all .2s;
+}
+.footer-link:hover { color: var(--text); border-color: var(--text2); transform: translateY(-1px); }
+.footer-link.website:hover { border-color: var(--green); color: var(--green); }
+.footer-link.linkedin:hover { border-color: #0a66c2; color: #0a66c2; }
+.footer-link.github:hover { border-color: #e2e2f0; color: #e2e2f0; }
+.footer-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+.footer-copy {
+  width: 100%; text-align: center;
+  font-size: 11px; color: var(--text3); font-family: 'Space Mono', monospace;
+  margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);
+}
+.footer-copy a { color: var(--text3); text-decoration: none; }
+.footer-copy a:hover { color: var(--text2); }
+</style>
+</head>
+<body>
+
+<div class="badge-row">
+  <span class="badge live">GEMINI POWERED</span>
+  <span class="badge">SEO-OPTIMIZED</span>
+  <span class="badge">HIGH-CONVERTING</span>
+  <span class="badge">FREE</span>
+</div>
+
+<header>
+  <h1>PRODUCT DESCRIPTION WRITER</h1>
+  <p class="subtitle">AI-powered · Works on GitHub Pages · Free to use</p>
+</header>
+
+<!-- API KEY BANNER -->
+<div class="api-banner" id="apiBanner">
+  <div class="api-status-dot" id="statusDot"></div>
+  <div class="api-status-text" id="statusText"><strong>Loading...</strong></div>
+  <div class="api-key-row">
+    <input type="password" id="apiKeyInput" placeholder="Paste your Gemini API key..." />
+    <button class="btn-sm btn-save" onclick="saveKey()">SAVE KEY</button>
+    <button class="btn-sm btn-clear" id="clearBtn" onclick="clearKey()" style="display:none">CLEAR</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-grid">
+
+  <div class="card">
+    <div class="card-label">01 — INPUT</div>
+
+    <div class="field">
+      <label>Product Name <span class="req">*</span></label>
+      <input type="text" id="productName" placeholder="e.g. Wireless Noise-Cancelling Headphones" />
+    </div>
+    <div class="field">
+      <label>Key Features <small style="color:var(--text3);text-transform:none;font-size:10px">(comma separated)</small></label>
+      <input type="text" id="features" placeholder="e.g. 30hr battery, foldable, deep bass" />
+    </div>
+    <div class="field">
+      <label>Target Audience</label>
+      <input type="text" id="audience" placeholder="e.g. music lovers, remote workers" />
+    </div>
+    <div class="field-row">
+      <div class="field" style="margin:0">
+        <label>Tone</label>
+        <select id="tone">
+          <option>Professional</option>
+          <option>Casual & Friendly</option>
+          <option>Luxury & Premium</option>
+          <option>Playful & Fun</option>
+          <option>Technical & Detailed</option>
+          <option>Bold & Energetic</option>
+        </select>
+      </div>
+      <div class="field" style="margin:0">
+        <label>Length</label>
+        <select id="length">
+          <option value="short">Short (1 para)</option>
+          <option value="medium" selected>Medium (3 para)</option>
+          <option value="long">Long (5 para)</option>
+        </select>
+      </div>
+    </div>
+    <button class="gen-btn" id="genBtn" onclick="generate()">
+      <div class="spinner" id="spinner"></div>
+      <span id="btnText">GENERATE DESCRIPTION →</span>
+    </button>
+  </div>
+
+  <div class="card output-card">
+    <div class="out-header">
+      <div class="card-label" style="margin:0">02 — OUTPUT</div>
+      <div class="out-actions">
+        <button class="icon-btn" id="copyBtn" onclick="copyText()">COPY</button>
+        <button class="icon-btn" onclick="clearOutput()">CLEAR</button>
+      </div>
+    </div>
+    <div class="output-box">
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">✦</div>
+        <p>Fill in the form<br>and hit generate</p>
+      </div>
+      <div id="outputText"></div>
+      <div class="error-box" id="errorBox"></div>
+    </div>
+    <div class="stats-row" id="statsRow"></div>
+  </div>
+
+</div>
+
+<div class="help-box">
+  🔑 <strong>HOW TO GET FREE GEMINI API KEY:</strong>
+  Visit <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com/app/apikey</a>
+  → Sign in with Google → Click <strong>"Create API Key"</strong> → Copy & paste above. &nbsp;|&nbsp;
+  Free tier: <strong>1,500 requests/day</strong> (15/min). Your key stays in your browser only — never shared.
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-left">
+    <span class="footer-name">MD Faisal Hossain</span>
+    <span class="footer-tagline">// Developer &amp; Creator</span>
+  </div>
+
+  <div class="footer-links">
+    <a class="footer-link website" href="https://www.faisalh.online/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+      faisalh.online
+    </a>
+    <a class="footer-link linkedin" href="https://www.linkedin.com/in/ifaisalh/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+        <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+      </svg>
+      LinkedIn
+    </a>
+    <a class="footer-link github" href="https://github.com/faisalhbd" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+      </svg>
+      GitHub
+    </a>
+  </div>
+
+  <div class="footer-copy">
+    © 2025 <a href="https://www.faisalh.online/" target="_blank">MD Faisal Hossain</a> · Built with ❤️ using Google Gemini AI · Free to use
+  </div>
+</footer>
+
+<script>
+const STORAGE_KEY = "gemini_api_key_pdw";
+
+function getKey() { return localStorage.getItem(STORAGE_KEY) || ""; }
+
+function saveKey() {
+  const val = document.getElementById('apiKeyInput').value.trim();
+  if (!val) { alert("Please enter a valid API key."); return; }
+  localStorage.setItem(STORAGE_KEY, val);
+  document.getElementById('apiKeyInput').value = '';
+  updateStatus();
+}
+
+function clearKey() { localStorage.removeItem(STORAGE_KEY); updateStatus(); }
+
+function updateStatus() {
+  const key = getKey();
+  const dot = document.getElementById('statusDot');
+  const txt = document.getElementById('statusText');
+  const clearBtn = document.getElementById('clearBtn');
+  if (key) {
+    dot.className = 'api-status-dot';
+    const masked = key.slice(0,6) + '••••••••' + key.slice(-4);
+    txt.innerHTML = `<strong>API Key Active</strong> &nbsp;<span style="color:var(--text3);font-size:11px;font-family:'Space Mono',monospace">${masked}</span> — Ready!`;
+    clearBtn.style.display = 'inline-block';
+  } else {
+    dot.className = 'api-status-dot warn';
+    txt.innerHTML = `<strong>No API Key</strong> — Enter your free Gemini key to start generating.`;
+    clearBtn.style.display = 'none';
+  }
+}
+
+async function generate() {
+  const name = document.getElementById('productName').value.trim();
+  if (!name) {
+    const el = document.getElementById('productName');
+    el.focus(); el.style.borderColor = 'var(--accent)';
+    setTimeout(() => el.style.borderColor = '', 1500);
+    return;
+  }
+
+  const key = getKey();
+  if (!key) {
+    const banner = document.getElementById('apiBanner');
+    banner.style.boxShadow = '0 0 0 2px var(--accent)';
+    document.getElementById('apiKeyInput').focus();
+    setTimeout(() => banner.style.boxShadow = '', 1500);
+    return;
+  }
+
+  const features = document.getElementById('features').value.trim();
+  const audience = document.getElementById('audience').value.trim();
+  const tone = document.getElementById('tone').value;
+  const lengthVal = document.getElementById('length').value;
+  const paraCount = lengthVal === 'short' ? '1 paragraph' : lengthVal === 'medium' ? '3 paragraphs' : '5 paragraphs';
+
+  const prompt = `Write a compelling, SEO-optimized product description.
+
+Product Name: ${name}
+${features ? `Key Features: ${features}` : ''}
+${audience ? `Target Audience: ${audience}` : ''}
+Tone: ${tone}
+Length: ${paraCount}
+
+Requirements:
+- Start with a powerful hook sentence
+- Focus on BENEFITS, not just features
+- Speak directly to the target audience
+- Include relevant keywords naturally for SEO
+- End with a persuasive call-to-action
+- Write in flowing paragraphs only (no bullet points)`;
+
+  const btn = document.getElementById('genBtn');
+  const spinner = document.getElementById('spinner');
+  const btnText = document.getElementById('btnText');
+  const outputText = document.getElementById('outputText');
+  const emptyState = document.getElementById('emptyState');
+  const errorBox = document.getElementById('errorBox');
+  const statsRow = document.getElementById('statsRow');
+  const startTime = Date.now();
+
+  btn.disabled = true;
+  spinner.style.display = 'block';
+  btnText.textContent = 'GENERATING...';
+  emptyState.style.display = 'none';
+  errorBox.style.display = 'none';
+  outputText.style.display = 'block';
+  outputText.innerHTML = '<span class="typing-cursor"></span>';
+  statsRow.innerHTML = '';
+
+  try {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.8, maxOutputTokens: 1024 }
+        })
+      }
+    );
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data?.error?.message || 'API error.');
+
+    const result = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response received.";
+
+    outputText.innerHTML = '';
+    let i = 0;
+    function type() {
+      if (i < result.length) {
+        outputText.textContent = result.slice(0, i + 1);
+        const cur = document.createElement('span');
+        cur.className = 'typing-cursor';
+        outputText.appendChild(cur);
+        i++;
+        setTimeout(type, result.length > 600 ? 5 : 10);
+      } else {
+        outputText.textContent = result;
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+        const words = result.trim().split(/\s+/).length;
+        statsRow.innerHTML = `
+          <span class="stat">Words: <span>${words}</span></span>
+          <span class="stat">Chars: <span>${result.length}</span></span>
+          <span class="stat">Time: <span>${elapsed}s</span></span>`;
+      }
+    }
+    type();
+
+  } catch (err) {
+    outputText.style.display = 'none';
+    errorBox.style.display = 'block';
+    let msg = err.message || 'Unknown error.';
+    if (msg.includes('API_KEY_INVALID') || msg.includes('invalid') || msg.includes('403'))
+      msg = '⚠ Invalid API Key. Double-check your Gemini key and try again.';
+    else if (msg.includes('quota') || msg.includes('RESOURCE_EXHAUSTED') || msg.includes('429'))
+      msg = '⚠ Rate limit hit (15 req/min). Wait a moment and try again. Daily limit: 1,500 requests.';
+    else if (msg.includes('fetch') || msg.includes('network') || msg.includes('Failed'))
+      msg = '⚠ Network error. Check your internet connection.';
+    errorBox.textContent = msg;
+  } finally {
+    btn.disabled = false;
+    spinner.style.display = 'none';
+    btnText.textContent = 'GENERATE DESCRIPTION →';
+  }
+}
+
+function copyText() {
+  const t = document.getElementById('outputText').textContent.trim();
+  if (!t) return;
+  navigator.clipboard.writeText(t).then(() => {
+    const b = document.getElementById('copyBtn');
+    b.textContent = 'COPIED ✓'; b.style.color = 'var(--green)';
+    setTimeout(() => { b.textContent = 'COPY'; b.style.color = ''; }, 2000);
+  });
+}
+
+function clearOutput() {
+  document.getElementById('outputText').style.display = 'none';
+  document.getElementById('outputText').innerHTML = '';
+  document.getElementById('errorBox').style.display = 'none';
+  document.getElementById('emptyState').style.display = 'block';
+  document.getElementById('statsRow').innerHTML = '';
+}
+
+document.addEventListener('keydown', e => { if (e.ctrlKey && e.key === 'Enter') generate(); });
+updateStatus();
+</script>
+</body>
+</html>
